@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
+    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com/$(git branch | grep '*' | cut -d ' ' -f2) --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
   },
   "eslintConfig": {
     "extends": [
