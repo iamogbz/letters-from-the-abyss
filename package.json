@@ -20,9 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
-    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com/$(git branch | grep '*' | cut -d ' ' -f2) --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
+    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com/$GITHUB_REF_NAME --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "aws-spa": "^3.2.0"
+    "aws-spa": "^3.2.0",
+    "coveralls": "^3.1.1"
   }
 }
