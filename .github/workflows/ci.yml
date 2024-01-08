@@ -33,7 +33,7 @@ jobs:
           pnpm build
       - name: Report
         env:
-          COVERALLS_GIT_BRANCH: ${{ github.ref }}
+          COVERALLS_GIT_BRANCH: ${{ github.ref_name }}
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
           pnpm coveralls

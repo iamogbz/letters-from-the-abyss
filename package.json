@@ -20,11 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "env PUBLIC_URL=${GITHUB_REF_NAME//\\//-} react-scripts build",
     "test": "react-scripts test",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
-    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com/$GITHUB_REF_NAME --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
+    "release": "env $(cat .env) aws-spa deploy letters-from-the-abyss.com/${GITHUB_REF_NAME//\\//-} --cacheInvalidation 'index.html' --cacheBustedPrefix 'static/'"
   },
   "eslintConfig": {
     "extends": [
