@@ -27,7 +27,7 @@ jobs:
         env:
           CI: true
         run: |
-          pnpm test -- --ci --coverage
+          pnpm test -- --ci --coverage --watchAll=false
       - name: Build
         run: |
           pnpm build
