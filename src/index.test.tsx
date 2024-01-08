@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import App from "./components/App";
 
 const mockReportWebVitals = jest.fn();
-jest.mock("./reportWebVitals", () => mockReportWebVitals);
+jest.mock("./utils/reportWebVitals", () => mockReportWebVitals);
 const mockRoot = { render: jest.fn(), unmount: jest.fn() };
 const createRootSpy = jest.spyOn(ReactDOM, "createRoot");
 const rootEl = document.createElement("div");
