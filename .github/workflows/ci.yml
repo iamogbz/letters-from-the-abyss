@@ -27,13 +27,14 @@ jobs:
         env:
           CI: true
         run: |
-          pnpm test -- --ci --coverage
+          pnpm test -- --ci --coverage --watchAll=false
       - name: Build
         run: |
+          export PUBLIC_URL="/${GITHUB_REF_NAME//\//-}"
           pnpm build
       - name: Report
         env:
-          COVERALLS_GIT_BRANCH: ${{ github.ref }}
+          COVERALLS_GIT_BRANCH: ${{ github.ref_name }}
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
           pnpm coveralls
@@ -42,4 +43,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          export RELEASE_REF=${GITHUB_REF_NAME//\//-}
           pnpm release
