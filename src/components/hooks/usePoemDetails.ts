@@ -6,7 +6,6 @@ export function usePoemDetails(params: { title: string }) {
     suspense: true,
     queryKey: input,
     queryFn: async () => {
-      await new Promise(resolve => setTimeout(resolve, 3000))
       const response = await fetch(input);
       if (!response.ok) {
         throw new Error("Network response was not ok");

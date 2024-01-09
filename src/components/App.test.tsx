@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { AppRoot } from "./App";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const logoWrapperElement = screen.getByTestId("logo");
+test("renders logo", () => {
+  render(<AppRoot />);
+  const logoWrapperElement = screen.getAllByTestId("logo").at(0);
   expect(logoWrapperElement).toBeInTheDocument();
 });

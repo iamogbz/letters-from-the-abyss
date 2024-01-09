@@ -1,6 +1,5 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/App";
+import { AppRoot } from "./components/App";
 
 const mockReportWebVitals = jest.fn();
 jest.mock("./utils/reportWebVitals", () => mockReportWebVitals);
@@ -30,11 +29,7 @@ test("renders app and reports web vitals", async () => {
   expect(createRootSpy).toHaveBeenLastCalledWith(rootEl);
 
   expect(mockRoot.render).toHaveBeenCalledTimes(1);
-  expect(mockRoot.render).toHaveBeenLastCalledWith(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
+  expect(mockRoot.render).toHaveBeenLastCalledWith(<AppRoot />);
 
   expect(mockReportWebVitals).toHaveBeenCalledTimes(1);
   expect(mockReportWebVitals).toHaveBeenLastCalledWith();

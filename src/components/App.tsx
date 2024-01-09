@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import Logo from "./Logo";
+import withAppWrapper from "./hocs/withAppWrapper";
 import ErrorResetBoundary from "./ErrorResetBoundary";
 import PoemList from "./PoemList";
 
 import "./App.css";
-
 
 function App() {
   return (
@@ -21,5 +21,7 @@ function App() {
 function Spinner() {
   return <Logo size={128} className="App-logo" />;
 }
+
+export const AppRoot = withAppWrapper(App);
 
 export default App;
