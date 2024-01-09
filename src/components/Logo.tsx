@@ -3,7 +3,13 @@ import React from "react";
 import { Colors } from "../utils/constants";
 import { SVGWrapper } from "./Logo.styles";
 
-export default function Logo({ size }: { size: number }) {
+export default function Logo({
+  size,
+  ...wrapperProps
+}: { size: number } & React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
   const pathProps = {
     strokeLinecap: "round",
     strokeWidth: "32",
@@ -11,7 +17,7 @@ export default function Logo({ size }: { size: number }) {
     fill: "none",
   } as const;
   return (
-    <SVGWrapper>
+    <SVGWrapper {...wrapperProps}>
       <div id="logo" data-testid="logo">
         <svg height={size} width={size} viewBox="-260 -260 720 720">
           <path
