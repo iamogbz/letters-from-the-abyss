@@ -15,7 +15,7 @@
   color: var(--color-fg);
   text-transform: capitalize;
   text-align: start;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   position: sticky;
   top: 0;

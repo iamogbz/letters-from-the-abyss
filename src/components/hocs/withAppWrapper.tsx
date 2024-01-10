@@ -2,7 +2,7 @@ import { QueryClientProvider } from "react-query";
 import queryClient from "../../utils/queryClient";
 import React from "react";
 
-function withAppWrapper(Component: React.ComponentType) {
+export default function withAppWrapper(Component: React.ComponentType) {
   return () => (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
@@ -11,5 +11,3 @@ function withAppWrapper(Component: React.ComponentType) {
     </React.StrictMode>
   );
 }
-
-export default withAppWrapper
