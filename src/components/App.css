@@ -6,10 +6,49 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.App-text {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-fg);
+  text-transform: capitalize;
+  text-align: start;
+  align-items: start;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  z-index: -1;
+}
+
+.App-title {
+  font-size: 2em;
+}
+
+.App-owner {
+  font-size: 1em;
 }
 
 .App-logo {
   pointer-events: none;
+}
+
+.App-doodle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  mix-blend-mode: soft-light;
+  overflow: hidden;
+  position: fixed;
+  top: calc((200vmax - 100vh) * -0.5);
+  left: calc((200vmax - 100vw) * -0.5);
+  width: 200vmax;
+  height: 200vmax;
+  z-index: -2;
+  animation: App-logo-spin infinite 20s linear;
 }
 
 @media (prefers-reduced-motion: no-preference) {

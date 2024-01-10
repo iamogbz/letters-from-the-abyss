@@ -4,6 +4,9 @@ import { Colors } from "../utils/constants";
 const lineAnim = "progress 3s linear normal infinite";
 
 export const SVGWrapper = styled.div`
+  align-self: center;
+  justify-self: center;
+
   #logo {
     background-color: color-mix(in srgb, ${Colors.DARK} 80%, transparent);
     border-radius: 100%;

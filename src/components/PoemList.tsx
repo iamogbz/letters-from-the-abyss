@@ -9,7 +9,22 @@ function PoemList() {
       return <PoemCard key={title} title={title} date={date} />;
     });
   }, []);
-  return <>{poemsEls}</>;
+  return (
+    <div className="poem-list" style={PoemList.wrapperStyles}>
+      {poemsEls}
+    </div>
+  );
 }
+
+PoemList.wrapperStyles = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: "min(10vw, 10vh)",
+  get padding() {
+    return this.gap;
+  },
+} as React.CSSProperties;
 
 export default PoemList;

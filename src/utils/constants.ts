@@ -1,6 +1,6 @@
 export const Colors = {
-  DARK: "#121212",
-  LIGHT: "#EDEDED",
+  DARK: "var(--color-bg)",
+  LIGHT: "var(--color-fg)",
 } as const;
 
 export const FETCH_STATUS = {
