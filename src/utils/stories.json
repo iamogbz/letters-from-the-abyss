@@ -1,6 +1,26 @@
 {
   "data": {
-    "published": { "walled-garden": "2015-11-15", "umbrette": "2023-09-27" },
-    "drafts": {}
+    "drafts": {
+      "golden-brown": "2020-08-04",
+      "hidden-pilot": "2022-12-12",
+      "lost-light": "2020-07-20",
+      "lucky-break": "2021-05-25",
+      "no-stop": "2017-11-13",
+      "omens": "2022-12-24"
+    },
+    "published": {
+      "death-of-depression": "2020-09-07",
+      "dirty-gods": "2017-11-13",
+      "meal-time": "2021-10-10",
+      "sand-storm": "2022-11-16",
+      "umbrette": "2023-09-27",
+      "walled-garden": "2015-11-26",
+      "maze-runner": "2022-02-16",
+      "mighty-mouse": "2021-01-01",
+      "the-woods": "2018-02-14",
+      "dying-phoenix": "2020-06-20",
+      "moon-v-sun": "2023-03-29",
+      "big-bang": "2023-04-10"
+    }
   }
 }
