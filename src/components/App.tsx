@@ -25,7 +25,9 @@ calc(10 + 4 * @i), 70%, 68%, @r.8
         `}</Doodle>
       </div>
       <div className={cls`text`}>
-        <div className={cls`title`}>Letters from the Abyss</div>
+        <a className={cls`title`} href="#root">
+          Letters from the Abyss
+        </a>
         <div className={cls`owner`}>
           Ogbizi &copy; {new Date().getFullYear()}
         </div>

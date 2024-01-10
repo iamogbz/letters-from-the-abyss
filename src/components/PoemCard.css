@@ -30,6 +30,7 @@
   border-radius: 8px;
   /* background-color: var(--color-hl); */
   color: var(--color-fg);
+  text-decoration: none;
 }
 
 .poem-card-wrapper .poem-card-timestamp {

@@ -15,8 +15,8 @@ function PoemCard({
   date: string;
 }) {
   return (
-    <div className={cls`wrapper`}>
-      <div className={cls`title`}>{formatTitle(title)}</div>
+    <div className={cls`wrapper`} id={title}>
+      <a className={cls`title`} href={`#${title}`}>{formatTitle(title)}</a>
       <div className={cls`details`}>
         <ErrorResetBoundary>
           <Suspense fallback={<Spinner />}>

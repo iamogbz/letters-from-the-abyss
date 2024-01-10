@@ -21,10 +21,14 @@
   top: 0;
   left: 0;
   padding: 12px;
+  width: calc(100% - (12px * 2));
+  user-select: none;
 }
 
 .App-title {
   font-size: 2em;
+  text-decoration: none;
+  color: inherit;
 }
 
 .App-owner {
