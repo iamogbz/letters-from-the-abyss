@@ -9,17 +9,6 @@ import "./App.css";
 function App() {
   return (
     <div className={cls``}>
-      <div className={cls`text`}>
-        <div className={cls`title`}>Letters from the Abyss</div>
-        <div className={cls`owner`}>
-          Ogbizi &copy; {new Date().getFullYear()}
-        </div>
-      </div>
-      <ErrorResetBoundary>
-        <Suspense fallback={<Spinner />}>
-          <PoemList />
-        </Suspense>
-      </ErrorResetBoundary>
       <div className={cls`doodle`}>
         <Doodle>{`
 @grid: 50x1 / 100%;
@@ -31,10 +20,21 @@ transform: rotate(calc(@i * 5deg));
 
 border-radius: 30%;
 border: 1px solid hsla(
-  calc(10 + 4 * @i), 70%, 68%, @r.8
+calc(10 + 4 * @i), 70%, 68%, @r.8
 );
-          `}</Doodle>
+        `}</Doodle>
       </div>
+      <div className={cls`text`}>
+        <div className={cls`title`}>Letters from the Abyss</div>
+        <div className={cls`owner`}>
+          Ogbizi &copy; {new Date().getFullYear()}
+        </div>
+      </div>
+      <ErrorResetBoundary>
+        <Suspense fallback={<Spinner />}>
+          <PoemList />
+        </Suspense>
+      </ErrorResetBoundary>
     </div>
   );
 }

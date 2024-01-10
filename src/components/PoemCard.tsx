@@ -3,6 +3,7 @@ import { usePoemDetails } from "./hooks/usePoemDetails";
 import Logo from "./Logo";
 import ErrorResetBoundary from "./ErrorResetBoundary";
 import "./PoemCard.css";
+import Doodle from "./Doodle";
 
 function PoemCard({
   title,
@@ -43,7 +44,35 @@ function PoemDetails({ title }: { title: string }) {
         .map((line, i) => <p key={i}>{line}</p>),
     [data]
   );
-  return <div className={cls`content`}>{lines}</div>;
+  return (
+    <div className={cls`content`}>
+      {lines}
+      <div className={cls`paper`}>
+        <svg width="0">
+          <filter id="filter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency=".01"
+              numOctaves="10"
+            />
+            <feDisplacementMap in="SourceGraphic" scale="240" />
+          </filter>
+        </svg>
+        <Doodle>{`
+        :doodle {
+          @size: 1px;
+          transform: translate(-100%, -100%);
+          border-radius: 50%;
+          filter: url(#filter);
+          box-shadow: @m100(
+            @r(100vw) @r(100vh) @r(20vmin, 40vmin) @r(20vmin)
+            @pd(#11cbd7, #c6f1e7, #f0fff3, #fa4659)
+          );
+        }
+        `}</Doodle>
+      </div>
+    </div>
+  );
 }
 
 function Spinner() {

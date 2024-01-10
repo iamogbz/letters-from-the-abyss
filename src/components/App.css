@@ -17,11 +17,10 @@
   text-align: start;
   align-items: start;
   justify-content: center;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   padding: 12px;
-  z-index: -1;
 }
 
 .App-title {
@@ -47,7 +46,6 @@
   left: calc((200vmax - 100vw) * -0.5);
   width: 200vmax;
   height: 200vmax;
-  z-index: -2;
   animation: App-logo-spin infinite 20s linear;
 }
 

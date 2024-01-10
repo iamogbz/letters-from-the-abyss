@@ -25,6 +25,7 @@ PoemList.wrapperStyles = {
   get padding() {
     return this.gap;
   },
+  zIndex: 1,
 } as React.CSSProperties;
 
 export default PoemList;
