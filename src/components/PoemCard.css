@@ -80,17 +80,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-color: var(--color-hl);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
 
   border-radius: 4px;
   width: var(--poem-width);
   aspect-ratio: 1/1;
 
   transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+
+  &::before {
+    content: '';
+
+    background-image: inherit;
+    background-color: var(--color-hl);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: block;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+  }
 
   & .collapsed {
     width: 0vw;
