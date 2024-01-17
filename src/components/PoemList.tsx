@@ -1,4 +1,5 @@
 import React from "react";
+import ReactList from "react-list";
 import stories from "../utils/stories.json";
 import PoemCard from "./PoemCard";
 
@@ -19,25 +20,41 @@ function useValue<T>(query: () => T): T {
 
 function PoemList() {
   const pageHash = useValue(() => document.location.hash);
-  const poemsEls = React.useMemo(() => {
+  const poemEntries = React.useMemo(() => {
     // sort poems by date
-    const poemEntries = Object.entries(stories.data.published).sort((a, b) => {
+    return Object.entries(stories.data.published).sort((a, b) => {
       return a[1].localeCompare(b[1]);
     });
-    return poemEntries.map(([title, date]) => {
+  }, []);
+  const renderItem = React.useCallback<ReactListX.ItemRenderer>(
+    (i, k) => {
+      const [title, date] = poemEntries[i];
       return (
         <PoemCard
-          key={title}
+          key={k}
           title={title}
           date={date}
-          open={pageHash.endsWith(title)}
+          open={true || pageHash.endsWith(title)}
         />
       );
-    });
-  }, [pageHash]);
+    },
+    [pageHash, poemEntries]
+  );
+  const getItemSize = React.useCallback<ReactListX.ItemSizeGetter>(
+    (i) => {
+      const [title] = poemEntries[i];
+      return document.getElementById(title)?.getClientRects()[0].height ?? 100;
+    },
+    [poemEntries]
+  );
   return (
     <div className="poem-list" style={PoemList.wrapperStyles}>
-      {poemsEls}
+      <ReactList
+        itemRenderer={renderItem}
+        itemSizeGetter={getItemSize}
+        length={poemEntries.length}
+        type="variable"
+      />
     </div>
   );
 }
@@ -47,7 +64,6 @@ PoemList.wrapperStyles = {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  gap: "min(10vw, 10vh)",
   get padding() {
     return this.gap;
   },

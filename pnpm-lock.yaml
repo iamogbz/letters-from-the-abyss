@@ -26,6 +26,9 @@ dependencies:
   '@types/react-dom':
     specifier: ^18.2.18
     version: 18.2.18
+  '@types/react-list':
+    specifier: ^0.8.11
+    version: 0.8.11
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.10.7)
@@ -38,6 +41,9 @@ dependencies:
   react-error-boundary:
     specifier: ^4.0.12
     version: 4.0.12(react@18.2.0)
+  react-list:
+    specifier: ^0.8.17
+    version: 0.8.17(react@18.2.0)
   react-query:
     specifier: ^3.39.3
     version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
@@ -2841,6 +2847,12 @@ packages:
 
   /@types/react-dom@18.2.18:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
+    dependencies:
+      '@types/react': 18.2.47
+    dev: false
+
+  /@types/react-list@0.8.11:
+    resolution: {integrity: sha512-mUfWOutmUDUicT9T1MySV6jLtbFnslyZCvXhIWGnAIah6GZsSF4yUXnX8UfdLP/PptCRPVpjxO/ksneU7j1y+A==}
     dependencies:
       '@types/react': 18.2.47
     dev: false
@@ -9792,6 +9804,15 @@ packages:
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-list@0.8.17(react@18.2.0):
+    resolution: {integrity: sha512-pgmzGi0G5uGrdHzMhgO7KR1wx5ZXVvI3SsJUmkblSAKtewIhMwbQiMuQiTE83ozo04BQJbe0r3WIWzSO0dR1xg==}
+    peerDependencies:
+      react: 0.14 || 15 - 18
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-query@3.39.3(react-dom@18.2.0)(react@18.2.0):
