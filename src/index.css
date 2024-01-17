@@ -1,13 +1,37 @@
+:root {
+  /* --color-bg: rgb(32, 24, 24, 1); */
+  --color-bg: black;
+  --color-fg: rgb(239, 225, 210, 1);
+  --color-hl: color-mix(in srgb, maroon, rgba(0,0,0,0) 20%);
+}
+
+@font-face {
+  font-family: default-regular;
+  src: url("https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/pacifico/Pacifico-Regular.ttf");
+}
+
+html {
+  background-color: var(--color-bg);
+}
+@media only screen and (min-width:768px) {
+  html, body {
+    overscroll-behavior-y:none;
+  }
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: default-regular, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-size: 1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

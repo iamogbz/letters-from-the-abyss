@@ -1,0 +1,134 @@
+:root {
+  --poem-width: min(45vw, 45vh);
+  --poem-height: var(--poem-width);
+}
+
+.poem-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  user-select: none;
+  overflow: hidden;
+
+  border-radius: 8px;
+  border-color: var(--color-hl);
+  border-style: solid;
+  border-width: 0;
+  padding: 8px;
+  margin: min(10vw, 10vh) 0;
+  background-color: var(--color-hl);
+  box-shadow: 0px 2px 2px 0px color-mix(in srgb, var(--color-bg), black);
+}
+
+.poem-card-wrapper .poem-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  padding-top: 0;
+  text-transform: capitalize;
+  border-radius: 8px;
+  /* background-color: var(--color-hl); */
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+.poem-card-wrapper .poem-card-timestamp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  padding-bottom: 0;
+  /* background-color: var(--color-hl); */
+  text-shadow: 0 -1px var(--color-bg);
+  color: var(--color-fg);
+  font-size: 0.5em;
+}
+
+.poem-card-wrapper .poem-card-details {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  position: relative;
+
+  @media (max-width:640px) {
+    flex-direction: column;
+  }
+}
+
+.poem-card-details .poem-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  position: relative;
+
+  background-color: var(--color-fg);
+  border-radius: 4px;
+
+  width: var(--poem-width);
+
+  transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+
+  &.collapsed {
+    width: 0vw;
+    height: 0vw;
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.poem-card-details .poem-card-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 4px;
+  width: var(--poem-width);
+  aspect-ratio: 1/1;
+
+  transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+
+  @media (max-width:640px) {
+    width: 100%;
+  }
+
+  &::before {
+    content: '';
+
+    background-image: inherit;
+    background-color: var(--color-hl);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: block;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+  }
+
+  &.collapsed {
+    width: 0vw;
+    height: 0vw;
+    overflow: hidden;
+  }
+}
+
+.poem-card-paper {
+  display: flex;
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  mix-blend-mode: overlay;
+}

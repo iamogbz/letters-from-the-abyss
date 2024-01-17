@@ -9,3 +9,11 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare namespace ReactListX {
+  export type ItemRenderer = (
+    index: number,
+    key: number | string
+  ) => JSX.Element;
+  export type ItemSizeGetter = (index: number) => number;
+}
