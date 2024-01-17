@@ -54,6 +54,11 @@
   gap: 4px;
   background-color: transparent;
   border-radius: 4px;
+  position: relative;
+
+  @media (max-width:640px) {
+    flex-direction: column;
+  }
 }
 
 .poem-card-details .poem-card-content {
@@ -91,6 +96,10 @@
   aspect-ratio: 1/1;
 
   transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+
+  @media (max-width:640px) {
+    width: 100%;
+  }
 
   &::before {
     content: '';
