@@ -8,23 +8,31 @@ import Doodle from "./Doodle";
 function PoemCard({
   title,
   date,
+  open,
 }: {
   /** Poem unique title */
   title: string;
   /** Poem publish date in YYYY-MM-DD format */
   date: string;
+  open: boolean;
 }) {
   return (
-    <div className={cls`wrapper`} id={title}>
-      <a className={cls`title`} href={`#${title}`}>{formatTitle(title)}</a>
-      <div className={cls`details`}>
+    <div
+      className={cls`wrapper`}
+      id={title}
+      onClick={() => (document.location.hash = title)}
+    >
+      <a className={cls`title`} href={`#${title}`}>
+        {formatTitle(title)}
+      </a>
+      <div className={cls`details` + (open ? "" : " collapsed")}>
         <ErrorResetBoundary>
           <Suspense fallback={<Spinner />}>
-            <PoemDetails title={title} />
+            <PoemDetails title={title} open={open} />
           </Suspense>
         </ErrorResetBoundary>
         <div
-          className={cls`photo`}
+          className={cls`photo` + (open ? "" : " collapsed")}
           style={{ backgroundImage: cardBg(title) }}
         ></div>
       </div>
@@ -33,7 +41,7 @@ function PoemCard({
   );
 }
 
-function PoemDetails({ title }: { title: string }) {
+function PoemDetails({ title, open }: { title: string; open: boolean }) {
   const { data } = usePoemDetails({ title });
   const lines = React.useMemo(
     () =>
@@ -45,7 +53,7 @@ function PoemDetails({ title }: { title: string }) {
     [data]
   );
   return (
-    <div className={cls`content`}>
+    <div className={cls`content` + (open ? "" : " collapsed")}>
       {lines}
       <div className={cls`paper`}>
         <svg width="0">

@@ -70,9 +70,11 @@
 
   transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
 
-  & .collapsed {
+  &.collapsed {
     width: 0vw;
-    min-height: 0vw;
+    height: 0vw;
+    padding: 0;
+    overflow: hidden;
   }
 }
 
@@ -106,9 +108,10 @@
     height: 110%;
   }
 
-  & .collapsed {
+  &.collapsed {
     width: 0vw;
     height: 0vw;
+    overflow: hidden;
   }
 }
 
