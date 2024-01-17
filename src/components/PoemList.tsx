@@ -43,7 +43,7 @@ function PoemList() {
   const getItemSize = React.useCallback<ReactListX.ItemSizeGetter>(
     (i) => {
       const [title] = poemEntries[i];
-      return document.getElementById(title)?.getClientRects()[0].height ?? 100;
+      return document.getElementById(title)?.getClientRects()[0]?.height ?? 100;
     },
     [poemEntries]
   );
