@@ -1,4 +1,4 @@
-# Lettres de L'abîme
+# [Lettres de L'abîme](https://letters-from-the-abyss.com)
 
 Notes to the end of the line and back again.
 
@@ -7,9 +7,9 @@ Notes to the end of the line and back again.
 - [x] Create react typescript app
 - [x] Create AWS deploy credentials
 - [x] Add deploy credentials to ci env
+- [x] Add poems from notes and delete mid [post](https://medium.com/p/9bb5206979ec/edit)
 - [ ] Fix deploy s3 public access [issue](https://github.com/lalalilo/aws-spa/issues/56)
 - [ ] Update cloudfront default root [object](https://github.com/lalalilo/aws-spa/issues/57)
-- [ ] Add poems from notes and delete mid [post](https://medium.com/p/9bb5206979ec/edit)
 
 ## Attribution
 
