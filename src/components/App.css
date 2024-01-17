@@ -43,7 +43,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: luminosity;
   overflow: hidden;
   position: fixed;
   top: calc((200vmax - 100vh) * -0.5);

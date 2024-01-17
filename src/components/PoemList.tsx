@@ -53,7 +53,10 @@ function PoemList() {
         itemRenderer={renderItem}
         itemSizeGetter={getItemSize}
         length={poemEntries.length}
+        threshold={2000}
+        minSize={200}
         type="variable"
+        useTranslate3d={true}
       />
     </div>
   );
