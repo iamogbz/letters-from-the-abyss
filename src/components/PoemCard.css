@@ -32,6 +32,7 @@
   /* background-color: var(--color-hl); */
   color: var(--color-fg);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .poem-card-wrapper .poem-card-timestamp {
@@ -131,4 +132,6 @@
   width: 150%;
   height: 150%;
   mix-blend-mode: overlay;
+  user-select: none;
+  pointer-events: none;
 }
