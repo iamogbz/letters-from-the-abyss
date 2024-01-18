@@ -18,3 +18,4 @@ Notes to the end of the line and back again.
 - [CSS Doodle](https://css-doodle.com/)
 - [ChatGPT](https://chat.openai.com/)
 - [Stable Diffusion](https://stablediffusionweb.com/#ai-image-generator)
+- [Logo](https://www.svgrepo.com/svg/528342/letter-opened)
