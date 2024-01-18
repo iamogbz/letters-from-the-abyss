@@ -28,9 +28,14 @@ calc(10 + 4 * @i), 70%, 68%, @r.8
         <a className={cls`title`} href="#root">
           Letters from the Abyss
         </a>
-        <div className={cls`owner`}>
+        <a
+          className={cls`owner`}
+          href="https://ogbizi.com"
+          target="_blank"
+          rel="noreferrer"
+        >
           Ogbizi &copy; {new Date().getFullYear()}
-        </div>
+        </a>
       </div>
       <ErrorResetBoundary>
         <Suspense fallback={<Spinner />}>
