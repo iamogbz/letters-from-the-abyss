@@ -32,7 +32,9 @@
 }
 
 .App-owner {
+  color: inherit;
   font-size: 1em;
+  text-decoration: none;
 }
 
 .App-logo {
