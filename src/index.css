@@ -2,7 +2,7 @@
   /* --color-bg: rgb(32, 24, 24, 1); */
   --color-bg: black;
   --color-fg: rgb(239, 225, 210, 1);
-  --color-hl: color-mix(in srgb, maroon, rgba(0,0,0,0) 20%);
+  --color-hl: color-mix(in srgb, var(--color-fg), rgba(0,0,0,0) 20%);
 }
 
 @font-face {
