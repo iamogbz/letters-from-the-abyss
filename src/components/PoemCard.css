@@ -1,111 +1,23 @@
-:root {
-  --poem-width: min(45vw, 45vh);
-  --poem-height: var(--poem-width);
-}
-
-.poem-card-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  user-select: none;
-  overflow: hidden;
-
-  border-radius: 8px;
-  border-color: var(--color-hl);
-  border-style: solid;
-  border-width: 0;
-  padding: 8px;
-  margin: min(10vw, 10vh) 0;
-  background-color: var(--color-hl);
-  box-shadow: 0px 2px 2px 0px color-mix(in srgb, var(--color-bg), black);
-}
-
-.poem-card-wrapper .poem-card-title {
+.poem-card-content,
+.poem-card-photo {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  padding-top: 0;
-  text-transform: capitalize;
-  border-radius: 8px;
-  /* background-color: var(--color-hl); */
-  /* color: var(--color-fg); */
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.poem-card-wrapper .poem-card-timestamp {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  padding-bottom: 0;
-  /* background-color: var(--color-hl); */
-  /* color: var(--color-fg); */
-  /* text-shadow: 0 -1px var(--color-bg); */
-  font-size: 0.5em;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 900;
-}
-
-.poem-card-wrapper .poem-card-details {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  gap: 4px;
-  background-color: transparent;
-  border-radius: 4px;
-  position: relative;
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-  }
-}
-
-.poem-card-details .poem-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  position: relative;
-
+  text-align: center;
+  color: var(--color-bg);
   background-color: var(--color-fg);
-  border-color: var(--color-bg);
-  border-radius: 4px;
-  border-width: 2px;
-  border-style: solid;
-
-  width: var(--poem-width);
-
-  transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
-
-  &.collapsed {
-    width: 0vw;
-    height: 0vw;
-    padding: 0;
-    overflow: hidden;
-  }
+  overflow: hidden;
+  position: relative;
 }
 
-.poem-card-details .poem-card-photo {
+.poem-card-photo {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-
-  border-radius: 4px;
-  width: var(--poem-width);
-  aspect-ratio: 1/1;
-
-  transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
+  height: 100%;
+  width: 100%;
 
   &::before {
     content: "";
@@ -131,12 +43,71 @@
   }
 }
 
-.poem-card-paper {
+.poem-card-text,
+.poem-card-text-sizer {
+  padding: 32px;
+  /* height: calc(100% - 64px); */
+  width: calc(100% - 64px);
+}
+
+/* .poem-card-text-sizer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+} */
+
+.poem-card-timestamp {
+  /* position: absolute;
+  bottom: 0; */
+  width: 100%;
+  text-align: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  padding-bottom: 0;
+  /* background-color: var(--color-hl); */
+  /* color: var(--color-fg); */
+  /* text-shadow: 0 -1px var(--color-bg); */
+  font-size: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+}
+
+.poem-card-title {
+  /* position: absolute; */
+  /* top: 0; */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  padding-top: 0;
+  text-transform: capitalize;
+  border-radius: 8px;
+  /* background-color: var(--color-hl); */
+  /* color: var(--color-fg); */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.poem-card-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.poem-card-paper {
   position: absolute;
   width: 150%;
   height: 150%;
   mix-blend-mode: overlay;
   user-select: none;
   pointer-events: none;
+  top: 0;
+  left: 0;
 }

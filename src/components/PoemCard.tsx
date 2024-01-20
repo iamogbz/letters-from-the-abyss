@@ -1,60 +1,49 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { usePoemDetails } from "./hooks/usePoemDetails";
-import Logo from "./Logo";
-import ErrorResetBoundary from "./ErrorResetBoundary";
 import "./PoemCard.css";
 import Doodle from "./Doodle";
 
-function PoemCard({
-  title,
-  date,
-  open,
-}: {
-  /** Poem unique title */
-  title: string;
-  /** Poem publish date in YYYY-MM-DD format */
-  date: string;
-  open: boolean;
-}) {
+export const PoemImage = React.forwardRef<
+  HTMLDivElement,
+  {
+    /** Poem unique title */
+    title: string;
+  }
+>(({ title }, ref) => {
   return (
-    <div
-      className={cls`wrapper`}
-      id={title}
-      onClick={() => (document.location.hash = title)}
-    >
-      <a className={cls`title`} href={`#${title}`}>
-        {formatTitle(title)}
-      </a>
-      <div className={cls`details` + (open ? "" : " collapsed")}>
-        <ErrorResetBoundary>
-          <Suspense fallback={<Spinner />}>
-            <PoemDetails title={title} open={open} />
-          </Suspense>
-        </ErrorResetBoundary>
-        <div
-          className={cls`photo` + (open ? "" : " collapsed")}
-          style={{ backgroundImage: cardBg(title) }}
-        ></div>
-      </div>
-      <div className={cls`timestamp`}>{formatDate(date)}</div>
+    <div ref={ref}>
+      <div
+        className={cls`photo`}
+        style={{ backgroundImage: cardBg(title) }}
+      ></div>
     </div>
   );
-}
+});
 
-function PoemDetails({ title, open }: { title: string; open: boolean }) {
+export const PoemDetails = React.forwardRef<
+  HTMLDivElement,
+  { date: string; title: string; open: boolean }
+>(({ date, title, open }, ref) => {
   const { data } = usePoemDetails({ title });
   const lines = React.useMemo(
     () =>
       data
         ?.trim()
         .split("\n")
-        .filter(Boolean)
         .map((line, i) => <p key={i}>{line}</p>),
     [data]
   );
   return (
-    <div className={cls`content` + (open ? "" : " collapsed")}>
-      {lines}
+    <div
+      id={title}
+      ref={ref}
+      className={cls`content` + (open ? "" : " collapsed")}
+    >
+      <a className={cls`title`} href={`#${title}`}>
+        {formatTitle(title)}
+      </a>
+      <div className={cls`text`}>{lines}</div>
+      <div className={cls`timestamp`}>{formatDate(date)}</div>
       <div className={cls`paper`}>
         <svg width="0">
           <filter id="filter">
@@ -81,11 +70,7 @@ function PoemDetails({ title, open }: { title: string; open: boolean }) {
       </div>
     </div>
   );
-}
-
-function Spinner() {
-  return <Logo size={32} style={{ position: "absolute" }} />;
-}
+});
 
 function cls(suffix: string | TemplateStringsArray) {
   return `poem-card-${suffix}`;
@@ -102,5 +87,3 @@ function formatTitle(title: string) {
 function formatDate(date: string) {
   return `${new Date(date).toDateString()}`;
 }
-
-export default PoemCard;

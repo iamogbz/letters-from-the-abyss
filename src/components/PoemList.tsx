@@ -1,7 +1,8 @@
 import React from "react";
-import ReactList from "react-list";
+// import ReactList from "react-list";
+import HTMLFlipBook from "react-pageflip";
 import stories from "../utils/stories.json";
-import PoemCard from "./PoemCard";
+import { PoemDetails, PoemImage } from "./PoemCard";
 
 function useInterval(...args: Parameters<typeof setInterval>) {
   React.useEffect(() => {
@@ -20,45 +21,57 @@ function useValue<T>(query: () => T): T {
 
 function PoemList() {
   const pageHash = useValue(() => document.location.hash);
+
   const poemEntries = React.useMemo(() => {
     // sort poems by date
     return Object.entries(stories.data.published).sort((a, b) => {
       return a[1].localeCompare(b[1]);
     });
   }, []);
-  const renderItem = React.useCallback<ReactListX.ItemRenderer>(
-    (i, k) => {
-      const [title, date] = poemEntries[i];
-      return (
-        <PoemCard
-          key={k}
-          title={title}
-          date={date}
-          open={true || pageHash.endsWith(title)}
-        />
-      );
-    },
+
+  const openPageNumber = React.useMemo(
+    () =>
+      Math.max(
+        0,
+        poemEntries.findIndex(([title]) => pageHash.endsWith(title)) * 2
+      ),
     [pageHash, poemEntries]
   );
-  const getItemSize = React.useCallback<ReactListX.ItemSizeGetter>(
-    (i) => {
-      const [title] = poemEntries[i];
-      return document.getElementById(title)?.getClientRects()[0]?.height ?? 100;
+
+  const pages = React.useMemo(() => {
+    return Array(poemEntries.length * 2)
+      .fill(null)
+      .map((_, i) => {
+        const entryIndex = Math.floor(i / 2);
+        const [title, date] = poemEntries[entryIndex];
+        const entryProps = { date, key: `${title}-${i}`, title };
+        if (i % 2) {
+          return <PoemDetails open={true} {...entryProps} />;
+        } else {
+          return <PoemImage {...entryProps} />;
+        }
+      });
+  }, [poemEntries]);
+
+  const onFlip = React.useCallback(
+    (flipEvent: { data: number }) => {
+      document.location.hash = poemEntries[Math.floor(flipEvent.data / 2)][0];
     },
     [poemEntries]
   );
   return (
-    <div className="poem-list" style={PoemList.wrapperStyles}>
-      <ReactList
-        itemRenderer={renderItem}
-        itemSizeGetter={getItemSize}
-        length={poemEntries.length}
-        threshold={2000}
-        minSize={200}
-        type="variable"
-        useTranslate3d={true}
-      />
-    </div>
+    // @ts-expect-error
+    <HTMLFlipBook
+      width={Math.max(300, window.screen.width / 4)}
+      height={Math.max(1500, window.screen.height / 2)}
+      className="poem-list"
+      style={PoemList.wrapperStyles}
+      children={pages}
+      startPage={openPageNumber}
+      size={"fixed"}
+      autoSize={true}
+      onFlip={onFlip}
+    ></HTMLFlipBook>
   );
 }
 
