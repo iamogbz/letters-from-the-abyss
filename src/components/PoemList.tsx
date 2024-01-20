@@ -63,7 +63,7 @@ function PoemList() {
     // @ts-expect-error
     <HTMLFlipBook
       width={Math.max(300, window.screen.width / 4)}
-      height={Math.max(1500, window.screen.height / 2)}
+      height={Math.max(1800, window.screen.height / 2)}
       className="poem-list"
       style={PoemList.wrapperStyles}
       children={pages}
