@@ -12,17 +12,18 @@
 .App-text {
   display: flex;
   flex-direction: column;
-  color: var(--color-fg);
+  color: var(--color-bg);
   text-transform: capitalize;
   text-align: start;
   align-items: flex-start;
   justify-content: center;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   left: 0;
   padding: 12px;
   width: calc(100% - (12px * 2));
   user-select: none;
+  z-index: 1;
 }
 
 .App-title {
@@ -45,6 +46,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  filter: grayscale();
   mix-blend-mode: luminosity;
   overflow: hidden;
   position: fixed;

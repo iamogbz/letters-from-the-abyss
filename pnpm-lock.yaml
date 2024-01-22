@@ -44,6 +44,9 @@ dependencies:
   react-list:
     specifier: ^0.8.17
     version: 0.8.17(react@18.2.0)
+  react-pageflip:
+    specifier: ^2.0.3
+    version: 2.0.3
   react-query:
     specifier: ^3.39.3
     version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
@@ -8653,6 +8656,10 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /page-flip@2.0.7:
+    resolution: {integrity: sha512-96lQFUUz7r/LZzEUZJ3yBIMEKU9+m8HMFDzTvTdD6P7Ag/wXINjp9n0W7b4wanwnDbQETo4uNUoL3zMqpFxwGA==}
+    dev: false
+
   /param-case@3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
@@ -9813,6 +9820,12 @@ packages:
     dependencies:
       prop-types: 15.8.1
       react: 18.2.0
+    dev: false
+
+  /react-pageflip@2.0.3:
+    resolution: {integrity: sha512-k81mHhRvUM52y8jyzTCh5t4O0lepkLhp+XGSUzq2C3uD+iW99Cv0jfRlqFCjZbD5N3jKkIFr7/3giucoXKDP3Q==}
+    dependencies:
+      page-flip: 2.0.7
     dev: false
 
   /react-query@3.39.3(react-dom@18.2.0)(react@18.2.0):
