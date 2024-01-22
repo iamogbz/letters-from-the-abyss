@@ -5,9 +5,19 @@
   justify-content: center;
   text-align: center;
   color: var(--color-bg);
-  background-color: var(--color-fg);
+  background-color: transparent;
   overflow: hidden;
   position: relative;
+}
+
+.poem-card-content {
+  flex-direction: column;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: 1px 1px 4px 4px color(--color-hl);
+}
+
+.poem-card-content > *[class^="poem-card"] {
+  background-color: var(--color-fg);
 }
 
 .poem-card-photo {
@@ -19,22 +29,10 @@
   height: 100%;
   width: 100%;
 
-  &::before {
-    content: "";
-
-    background-image: inherit;
-    background-color: var(--color-hl);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    display: block;
-    position: absolute;
-    top: -5%;
-    left: -5%;
-    width: 110%;
-    height: 110%;
-  }
+  background-color: transparent;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
   &.collapsed {
     width: 0vw;
@@ -60,19 +58,19 @@
 .poem-card-timestamp {
   /* position: absolute;
   bottom: 0; */
-  width: 100%;
+  width: calc(100% - 16px);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px;
-  padding-bottom: 0;
   /* background-color: var(--color-hl); */
   /* color: var(--color-fg); */
   /* text-shadow: 0 -1px var(--color-bg); */
   font-size: 0.7em;
   font-family: "Courier New", Courier, monospace;
   font-weight: 900;
+  text-shadow: 0 -1px 2px black;
 }
 
 .poem-card-title {
@@ -85,7 +83,7 @@
   justify-content: center;
   padding: 8px;
   text-transform: capitalize;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   /* background-color: var(--color-hl); */
   /* color: var(--color-fg); */
   text-decoration: underline;

@@ -3,12 +3,12 @@ import React from "react";
 import HTMLFlipBook from "react-pageflip";
 import stories from "../utils/stories.json";
 import { PoemDetails, PoemImage } from "./PoemCard";
+import "./PoemList.css";
 
 function useInterval(...args: Parameters<typeof setInterval>) {
   React.useEffect(() => {
     const intervalId = setInterval(...args);
-    const cleanup = () => clearInterval(intervalId);
-    return cleanup;
+    return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...args]);
 }
@@ -59,18 +59,49 @@ function PoemList() {
     },
     [poemEntries]
   );
+
+  const onChangeState = React.useCallback(
+    (flipEvent: { data: "fold_corner" | "flipping" | "read" }) => {
+      const clsSelector = ".poem-card-content";
+      if (flipEvent.data === "flipping") {
+        document
+          .querySelectorAll(clsSelector)
+          .forEach((el) => ((el as HTMLElement).style.opacity = "0"));
+      } else if (flipEvent.data === "read") {
+        (
+          document
+            .querySelector(`#${document.location.hash.replaceAll("#", "")}`)
+            ?.querySelector(clsSelector) as HTMLElement | undefined
+        )?.style.setProperty("opacity", "1");
+      }
+    },
+    []
+  );
+
+  const bookRef = React.useRef<any>();
+
+  React.useEffect(() => {
+    bookRef.current?.pageFlip()?.turnToPage(openPageNumber);
+    onChangeState({ data: "read" });
+  }, [onChangeState, onFlip, openPageNumber]);
+
+  const minPageSizePx = 300;
+
   return (
     // @ts-expect-error
     <HTMLFlipBook
-      width={Math.max(300, window.screen.width / 4)}
-      height={Math.max(1800, window.screen.height / 2)}
+      ref={bookRef}
+      width={Math.max(minPageSizePx, window.screen.width / 4)}
+      height={Math.max(minPageSizePx, window.screen.height / 2)}
       className="poem-list"
       style={PoemList.wrapperStyles}
       children={pages}
       startPage={openPageNumber}
+      drawShadow={false}
       size={"fixed"}
       autoSize={true}
       onFlip={onFlip}
+      onChangeState={onChangeState}
     ></HTMLFlipBook>
   );
 }

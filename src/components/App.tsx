@@ -42,6 +42,7 @@ calc(10 + 4 * @i), 70%, 68%, @r.8
           <PoemList />
         </Suspense>
       </ErrorResetBoundary>
+      <div className={cls`spacer`}>&nbsp;</div>
     </div>
   );
 }

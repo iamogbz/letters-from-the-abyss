@@ -34,28 +34,25 @@ export const PoemDetails = React.forwardRef<
     [data]
   );
   return (
-    <div
-      id={title}
-      ref={ref}
-      className={cls`content` + (open ? "" : " collapsed")}
-    >
-      <a className={cls`title`} href={`#${title}`}>
-        {formatTitle(title)}
-      </a>
-      <div className={cls`text`}>{lines}</div>
-      <div className={cls`timestamp`}>{formatDate(date)}</div>
-      <div className={cls`paper`}>
-        <svg width="0">
-          <filter id="filter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency=".01"
-              numOctaves="10"
-            />
-            <feDisplacementMap in="SourceGraphic" scale="240" />
-          </filter>
-        </svg>
-        <Doodle>{`
+    <div id={title} ref={ref} className={open ? "" : " collapsed"}>
+      <div className={cls`content`}>
+        <a className={cls`title`} href={`#${title}`}>
+          {formatTitle(title)}
+        </a>
+        <div className={cls`text`}>{lines}</div>
+        <div className={cls`timestamp`}>{formatDate(date)}</div>
+        <div className={cls`paper`}>
+          <svg width="0">
+            <filter id="filter">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency=".01"
+                numOctaves="10"
+              />
+              <feDisplacementMap in="SourceGraphic" scale="240" />
+            </filter>
+          </svg>
+          <Doodle>{`
         :doodle {
           @size: 1px;
           transform: translate(-100%, -100%);
@@ -67,6 +64,7 @@ export const PoemDetails = React.forwardRef<
           );
         }
         `}</Doodle>
+        </div>
       </div>
     </div>
   );
