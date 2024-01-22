@@ -68,9 +68,11 @@ function PoemList() {
           .querySelectorAll(clsSelector)
           .forEach((el) => ((el as HTMLElement).style.opacity = "0"));
       } else if (flipEvent.data === "read") {
+        const poemTitle = document.location.hash.replaceAll("#", "");
+        if (!poemTitle) return;
         (
           document
-            .querySelector(`#${document.location.hash.replaceAll("#", "")}`)
+            .querySelector(`#${poemTitle}`)
             ?.querySelector(clsSelector) as HTMLElement | undefined
         )?.style.setProperty("opacity", "1");
       }
