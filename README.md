@@ -19,3 +19,4 @@ Notes to the end of the line and back again.
 - [ChatGPT](https://chat.openai.com/)
 - [Stable Diffusion](https://stablediffusionweb.com/#ai-image-generator)
 - [Logo](https://www.svgrepo.com/svg/528342/letter-opened)
+<!-- - [Pageflip](https://github.com/Nodlik/react-pageflip) -->

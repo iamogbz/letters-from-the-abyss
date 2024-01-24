@@ -19,6 +19,10 @@ function useValue<T>(query: () => T): T {
   return v;
 }
 
+function Button(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return <input {...props} type="button" />;
+}
+
 function PoemList() {
   const pageHash = useValue(() => document.location.hash);
 
@@ -37,6 +41,9 @@ function PoemList() {
       ),
     [pageHash, poemEntries]
   );
+
+  const isOnFirstPage = openPageNumber === 0;
+  const isOnLastPage = openPageNumber / 2 === poemEntries.length - 1;
 
   const pages = React.useMemo(() => {
     return Array(poemEntries.length * 2)
@@ -83,28 +90,52 @@ function PoemList() {
   const bookRef = React.useRef<any>();
 
   React.useEffect(() => {
-    bookRef.current?.pageFlip()?.turnToPage(openPageNumber);
+    bookRef.current?.pageFlip()?.flip(openPageNumber);
     onChangeState({ data: "read" });
   }, [onChangeState, onFlip, openPageNumber]);
+
+  const goToNextPage = React.useCallback(
+    () => bookRef.current?.pageFlip().flipNext(),
+    []
+  );
+  const goToPrevPage = React.useCallback(
+    () => bookRef.current?.pageFlip().flipPrev(),
+    []
+  );
 
   const minPageSizePx = 300;
 
   return (
-    // @ts-expect-error
-    <HTMLFlipBook
-      ref={bookRef}
-      width={Math.max(minPageSizePx, window.screen.width / 4)}
-      height={Math.max(minPageSizePx, window.screen.height / 2)}
-      className="poem-list"
-      style={PoemList.wrapperStyles}
-      children={pages}
-      startPage={openPageNumber}
-      drawShadow={false}
-      size={"fixed"}
-      autoSize={true}
-      onFlip={onFlip}
-      onChangeState={onChangeState}
-    ></HTMLFlipBook>
+    <>
+      <Button
+        id="prev-btn"
+        disabled={isOnFirstPage}
+        value="Go back"
+        onClick={goToPrevPage}
+      />
+      {
+        // @ts-expect-error
+        <HTMLFlipBook
+          ref={bookRef}
+          width={Math.max(minPageSizePx, window.screen.width / 4)}
+          height={Math.max(minPageSizePx, window.screen.height / 2)}
+          style={PoemList.wrapperStyles}
+          children={pages}
+          startPage={openPageNumber}
+          drawShadow={false}
+          size={"fixed"}
+          autoSize={true}
+          onFlip={onFlip}
+          onChangeState={onChangeState}
+        ></HTMLFlipBook>
+      }
+      <Button
+        id="next-btn"
+        disabled={isOnLastPage}
+        value="Next page"
+        onClick={goToNextPage}
+      />
+    </>
   );
 }
 
