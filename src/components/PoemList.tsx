@@ -107,28 +107,29 @@ function PoemList() {
 
   return (
     <>
+      {
+        // @ts-expect-error
+        <HTMLFlipBook
+          autoSize={true}
+          children={pages}
+          drawShadow={false}
+          height={Math.max(minPageSizePx, window.screen.height / 2)}
+          onChangeState={onChangeState}
+          onFlip={onFlip}
+          ref={bookRef}
+          size={"fixed"}
+          startPage={openPageNumber}
+          style={PoemList.wrapperStyles}
+          useMouseEvents={false}
+          width={Math.max(minPageSizePx, window.screen.width / 4)}
+        ></HTMLFlipBook>
+      }
       <Button
         id="prev-btn"
         disabled={isOnFirstPage}
         value="Go back"
         onClick={goToPrevPage}
       />
-      {
-        // @ts-expect-error
-        <HTMLFlipBook
-          ref={bookRef}
-          width={Math.max(minPageSizePx, window.screen.width / 4)}
-          height={Math.max(minPageSizePx, window.screen.height / 2)}
-          style={PoemList.wrapperStyles}
-          children={pages}
-          startPage={openPageNumber}
-          drawShadow={false}
-          size={"fixed"}
-          autoSize={true}
-          onFlip={onFlip}
-          onChangeState={onChangeState}
-        ></HTMLFlipBook>
-      }
       <Button
         id="next-btn"
         disabled={isOnLastPage}

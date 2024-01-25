@@ -12,6 +12,7 @@ input[type="button"] {
   border-radius: 20px;
   padding: 20px;
   cursor: pointer;
+  z-index: 1;
 }
 
 input[type="button"][disabled] {
