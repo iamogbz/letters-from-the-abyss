@@ -22,8 +22,8 @@ export const PoemImage = React.forwardRef<
 
 export const PoemDetails = React.forwardRef<
   HTMLDivElement,
-  { date: string; title: string; open: boolean }
->(({ date, title, open }, ref) => {
+  React.PropsWithChildren<{ date?: string; title: string; open?: boolean }>
+>(({ date, title, open = true }, ref) => {
   const { data } = usePoemDetails({ title });
   const lines = React.useMemo(
     () =>
@@ -35,24 +35,39 @@ export const PoemDetails = React.forwardRef<
   );
   return (
     <div id={title} ref={ref} className={open ? "" : " collapsed"}>
-      <div className={cls`content`}>
-        <a className={cls`title`} href={`#${title}`}>
-          {formatTitle(title)}
-        </a>
-        <div className={cls`text`}>{lines}</div>
-        <div className={cls`timestamp`}>{formatDate(date)}</div>
-        <div className={cls`paper`}>
-          <svg width="0">
-            <filter id="filter">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency=".01"
-                numOctaves="10"
-              />
-              <feDisplacementMap in="SourceGraphic" scale="240" />
-            </filter>
-          </svg>
-          <Doodle>{`
+      <PoemCard date={date} lines={lines} title={title} />
+    </div>
+  );
+});
+
+export function PoemCard({
+  date,
+  lines,
+  title,
+}: {
+  date?: string;
+  lines?: React.ReactNode;
+  title: string;
+}) {
+  return (
+    <div className={cls`content`}>
+      <a className={cls`title`} href={`#${title}`}>
+        {formatTitle(title)}
+      </a>
+      <div className={cls`text`}>{lines}</div>
+      <div className={cls`timestamp`}>{formatDate(date)}</div>
+      <div className={cls`paper`}>
+        <svg width="0">
+          <filter id="filter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency=".01"
+              numOctaves="10"
+            />
+            <feDisplacementMap in="SourceGraphic" scale="240" />
+          </filter>
+        </svg>
+        <Doodle>{`
         :doodle {
           @size: 1px;
           transform: translate(-100%, -100%);
@@ -64,11 +79,10 @@ export const PoemDetails = React.forwardRef<
           );
         }
         `}</Doodle>
-        </div>
       </div>
     </div>
   );
-});
+}
 
 function cls(suffix: string | TemplateStringsArray) {
   return `poem-card-${suffix}`;
@@ -82,6 +96,7 @@ function formatTitle(title: string) {
   return title.replaceAll("-", " ");
 }
 
-function formatDate(date: string) {
+function formatDate(date?: string | null) {
+  if (!date) return "";
   return `${new Date(date).toDateString()}`;
 }
