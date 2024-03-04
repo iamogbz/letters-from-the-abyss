@@ -4,6 +4,8 @@ import HTMLFlipBook from "react-pageflip";
 import stories from "../utils/stories.json";
 import { PoemCard, PoemDetails, PoemImage } from "./PoemCard";
 import "./PoemList.css";
+import { useOnNavigation } from "./hooks/useOnNavigation";
+import { isPageLocallyLiked, logPoemLike } from "../utils/hitCounter";
 
 function useInterval(...args: Parameters<typeof setInterval>) {
   React.useEffect(() => {
@@ -46,7 +48,9 @@ function CreditsPage() {
       <p>And look at us, here, at the end of this little book.</p>
       <p>
         If you want more ravings then shoot me message at{" "}
-        <a href="mailto:iamogbz+letters@gmail.com?subject=Letter to the Abyss">here</a>
+        <a href="mailto:iamogbz+letters@gmail.com?subject=Letter to the Abyss">
+          here
+        </a>
       </p>
       <p>Thanks for reading</p>
     </div>
@@ -63,6 +67,15 @@ function PoemList() {
       return a[1].localeCompare(b[1]);
     });
   }, []);
+
+  const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
+  const likePoem = React.useCallback(() => {
+    logPoemLike();
+    setIsCurrentPoemLiked(isPageLocallyLiked());
+  }, []);
+  useOnNavigation({
+    callback: () => setIsCurrentPoemLiked(isPageLocallyLiked()),
+  });
 
   const pages = React.useMemo(() => {
     return [
@@ -154,6 +167,14 @@ function PoemList() {
 
   return (
     <>
+      <Button
+        id="like-btn"
+        value="❤️"
+        title="Like"
+        onClick={likePoem}
+        disabled={isCurrentPoemLiked}
+      ></Button>
+      <Button id="share-btn" value="🔗" title="Share"></Button>
       {
         // @ts-expect-error
         <HTMLFlipBook

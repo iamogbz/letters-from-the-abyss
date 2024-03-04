@@ -26,9 +26,17 @@ input#prev-btn {
   border-bottom-left-radius: 0;
 }
 
-input#next-btn {
+input#next-btn, input#like-btn, input#share-btn  {
   right: 0;
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+input#like-btn {
+  top: 210px;
+}
+
+input#share-btn {
+  top: 280px;
 }
