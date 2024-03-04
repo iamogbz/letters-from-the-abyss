@@ -6,6 +6,7 @@ import { PoemCard, PoemDetails, PoemImage } from "./PoemCard";
 import "./PoemList.css";
 import { useOnNavigation } from "./hooks/useOnNavigation";
 import { isPageLocallyLiked, logPoemLike } from "../utils/hitCounter";
+import { sharePoem } from "../utils/share";
 
 function useInterval(...args: Parameters<typeof setInterval>) {
   React.useEffect(() => {
@@ -69,8 +70,8 @@ function PoemList() {
   }, []);
 
   const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
-  const likePoem = React.useCallback(() => {
-    logPoemLike();
+  const likePoem = React.useCallback(async () => {
+    await logPoemLike();
     setIsCurrentPoemLiked(isPageLocallyLiked());
   }, []);
   useOnNavigation({
@@ -174,7 +175,12 @@ function PoemList() {
         onClick={likePoem}
         disabled={isCurrentPoemLiked}
       ></Button>
-      <Button id="share-btn" value="🔗" title="Share"></Button>
+      <Button
+        id="share-btn"
+        value="🔗"
+        title="Share"
+        onClick={sharePoem}
+      ></Button>
       {
         // @ts-expect-error
         <HTMLFlipBook

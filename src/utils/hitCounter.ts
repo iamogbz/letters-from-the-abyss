@@ -14,8 +14,12 @@ export function apiLogCount(countKey: string) {
   return `https://api.letters-from-the-abyss.com/counter${countKey}`;
 }
 
-export function logPageVisit() {
-  fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
+export async function logPageVisit() {
+  try {
+    await fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 export function isPageLocallyLiked() {
@@ -27,8 +31,12 @@ export function isPageLocallyLiked() {
   }
 }
 
-export function logPoemLike() {
+export async function logPoemLike() {
   const likey = pageKey(Keys.POEM_LIKE);
-  fetch(apiLogCount(likey));
-  window.localStorage.setItem(likey, "true");
+  try {
+    await fetch(apiLogCount(likey));
+    window.localStorage.setItem(likey, "true");
+  } catch (e) {
+    console.error(e);
+  }
 }
