@@ -32,5 +32,5 @@ test("renders app and reports web vitals", async () => {
   expect(mockRoot.render).toHaveBeenLastCalledWith(<AppRoot />);
 
   expect(mockReportWebVitals).toHaveBeenCalledTimes(1);
-  expect(mockReportWebVitals).toHaveBeenLastCalledWith();
+  expect(mockReportWebVitals).toHaveBeenLastCalledWith(console.log);
 });
