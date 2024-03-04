@@ -168,19 +168,6 @@ function PoemList() {
 
   return (
     <>
-      <Button
-        id="like-btn"
-        value="❤️"
-        title="Like"
-        onClick={likePoem}
-        disabled={isCurrentPoemLiked}
-      ></Button>
-      <Button
-        id="share-btn"
-        value="🔗"
-        title="Share"
-        onClick={sharePoem}
-      ></Button>
       {
         // @ts-expect-error
         <HTMLFlipBook
@@ -211,6 +198,19 @@ function PoemList() {
         value="Next page"
         onClick={goToNextPage}
       />
+      <Button
+        id="like-btn"
+        value="❤️"
+        title="Like"
+        onClick={likePoem}
+        disabled={isCurrentPoemLiked}
+      ></Button>
+      <Button
+        id="share-btn"
+        value="🔗"
+        title="Share"
+        onClick={sharePoem}
+      ></Button>
     </>
   );
 }
