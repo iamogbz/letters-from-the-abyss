@@ -5,8 +5,12 @@ import ErrorResetBoundary from "./ErrorResetBoundary";
 import PoemList from "./PoemList";
 import Doodle from "./Doodle";
 import "./App.css";
+import { logPageVisit } from "../utils/hitCounter";
+import { useOnNavigation } from "./hooks/useOnNavigation";
 
 function App() {
+  useOnNavigation({ callback: logPageVisit });
+
   return (
     <div className={cls``}>
       <div className={cls`doodle`}>

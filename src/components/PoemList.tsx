@@ -124,7 +124,6 @@ function PoemList() {
       } else if (flipEvent.data === "read") {
         const poemTitle = document.location.hash.replaceAll("#", "");
         if (!poemTitle) return;
-        console.log(poemTitle);
         (
           document
             .querySelector(`#${poemTitle}`)
@@ -137,11 +136,9 @@ function PoemList() {
 
   const bookRef = React.useRef<any>();
 
-  console.log(openPageNumber);
-
   React.useEffect(() => {
     bookRef.current?.pageFlip()?.flip(openPageNumber);
-    onChangeState({ data: "read" });
+    // onChangeState({ data: "read" });
   }, [onChangeState, onFlip, openPageNumber]);
 
   const goToNextPage = React.useCallback(
