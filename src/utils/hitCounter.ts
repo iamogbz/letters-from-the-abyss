@@ -7,7 +7,7 @@ export function pageKey(part: string) {
   const pathWithHash = [
     `${window.location.pathname}${part}`,
     "hash",
-    window.location.hash.replace("#", "") || "home",
+    window.location.hash.replace("#", ""),
   ]
     .filter(Boolean)
     .join("-");

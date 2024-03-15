@@ -18,9 +18,9 @@ afterEach(() => {
 describe("logPageVisit", () => {
   it.each`
     hash           | expected
-    ${""}          | ${"home"}
-    ${"#somehash"} | ${"somehash"}
-    ${"otherhash"} | ${"otherhash"}
+    ${""}          | ${""}
+    ${"#somehash"} | ${"-somehash"}
+    ${"otherhash"} | ${"-otherhash"}
   `(
     "calls get on correct api",
     async (params: { hash: string; expected: string }) => {
@@ -30,7 +30,7 @@ describe("logPageVisit", () => {
       expect(errorSpy).not.toHaveBeenCalled();
       expect(fetchSpy).toHaveBeenCalledTimes(1);
       expect(fetchSpy).toHaveBeenLastCalledWith(
-        `https://api.letters-from-the-abyss.com/counter/page-visit-hash-${params.expected}`
+        `https://api.letters-from-the-abyss.com/counter/page-visit-hash${params.expected}`
       );
     }
   );
@@ -42,7 +42,7 @@ describe("logPageVisit", () => {
     await logPageVisit();
     expect(errorSpy).toHaveBeenCalledWith(mockError);
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://api.letters-from-the-abyss.com/counter/page-visit-hash-home"
+      "https://api.letters-from-the-abyss.com/counter/page-visit-hash"
     );
   });
 });
@@ -50,9 +50,9 @@ describe("logPageVisit", () => {
 describe("logPoemLike", () => {
   it.each`
     hash           | expected
-    ${""}          | ${"home"}
-    ${"#somehash"} | ${"somehash"}
-    ${"otherhash"} | ${"otherhash"}
+    ${""}          | ${""}
+    ${"#somehash"} | ${"-somehash"}
+    ${"otherhash"} | ${"-otherhash"}
   `(
     "calls get on correct api",
     async (params: { hash: string; expected: string }) => {
@@ -64,7 +64,7 @@ describe("logPoemLike", () => {
       expect(errorSpy).not.toHaveBeenCalled();
       expect(fetchSpy).toHaveBeenCalledTimes(1);
       expect(fetchSpy).toHaveBeenLastCalledWith(
-        `https://api.letters-from-the-abyss.com/counter/poem-like-hash-${params.expected}`
+        `https://api.letters-from-the-abyss.com/counter/poem-like-hash${params.expected}`
       );
     }
   );
@@ -78,7 +78,7 @@ describe("logPoemLike", () => {
     expect(isPageLocallyLiked()).toBeFalsy();
     expect(errorSpy).toHaveBeenCalledWith(mockError);
     expect(fetchSpy).toHaveBeenCalledWith(
-      "https://api.letters-from-the-abyss.com/counter/poem-like-hash-home"
+      "https://api.letters-from-the-abyss.com/counter/poem-like-hash"
     );
   });
 });
