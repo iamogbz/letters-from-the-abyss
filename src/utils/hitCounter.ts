@@ -4,9 +4,13 @@ export const Keys = {
 };
 
 export function pageKey(part: string) {
-  const pathWithHash = `${
-    window.location.pathname
-  }${part}-hash-${window.location.hash.replace("#", "")}`;
+  const pathWithHash = [
+    `${window.location.pathname}${part}`,
+    "hash",
+    window.location.hash.replace("#", "") || "home",
+  ]
+    .filter(Boolean)
+    .join("-");
   return pathWithHash;
 }
 
