@@ -1,18 +1,43 @@
-import { isPageLocallyLiked, logPageVisit, logPoemLike } from "./hitCounter";
+import {
+  isPageLocallyLiked,
+  logPageVisit,
+  logPoemLike,
+  pageKey,
+} from "./hitCounter";
 
-const windowLocationHref = window.location.href;
+const windowLocation = window.location;
 const errorSpy = jest.spyOn(console, "error");
 const fetchSpy = jest.spyOn(window, "fetch");
 
 beforeEach(() => {
   errorSpy.mockImplementation(() => undefined);
   fetchSpy.mockResolvedValue(new Response());
-  window.location.href = windowLocationHref;
+  Object.defineProperty(window, "location", {
+    value: { ...windowLocation },
+    writable: true,
+  });
   window.localStorage.clear();
 });
 
 afterEach(() => {
   jest.resetAllMocks();
+});
+
+describe("pageKey", () => {
+  it.each`
+    pathSuffix | expected
+    ${""}      | ${"/visit-hash"}
+    ${"main/"} | ${"/visit-hash"}
+    ${"test/"} | ${"/test/visit-hash"}
+  `(
+    "excludes main branch from generated key",
+    (params: { pathSuffix: string; expected: string }) => {
+      const part = "visit";
+      const targetPath = window.location.pathname + params.pathSuffix;
+      window.location.pathname = targetPath;
+      expect(pageKey(part)).toEqual(params.expected);
+    }
+  );
 });
 
 describe("logPageVisit", () => {
