@@ -19,7 +19,7 @@ export function pageKey(part: string) {
 }
 
 export function apiLogCount(countKey: string) {
-  return `https://api.letters-from-the-abyss.com/counter${countKey}`;
+  return `https://api.${window.location.host}/counter${countKey}`;
 }
 
 export async function logPageVisit() {
