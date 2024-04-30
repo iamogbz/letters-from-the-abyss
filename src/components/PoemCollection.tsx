@@ -26,6 +26,7 @@ function PoemCollection() {
   const likePoem = React.useCallback(async () => {
     await logPoemLike();
     setIsCurrentPoemLiked(isPageLocallyLiked());
+    alert('Awesome, thank you for your feedback!');
   }, []);
   useOnNavigation({
     callback: () => setIsCurrentPoemLiked(isPageLocallyLiked()),
