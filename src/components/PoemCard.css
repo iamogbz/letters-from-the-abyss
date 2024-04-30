@@ -32,8 +32,8 @@
   top: calc(4em + 64px);
   height: 80vmin;
   width: 80vmin;
-  min-width: 480px;
-  min-height: 480px;
+  /* min-width: 480px;
+  min-height: 480px; */
   background-color: var(--color-bh);
   border-radius: 20px;
   border-color: var(--color-hl);

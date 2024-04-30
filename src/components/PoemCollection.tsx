@@ -81,25 +81,25 @@ function PoemCollection() {
       <Button
         id="prev-btn"
         disabled={isOnFirstPage}
-        value="⬅️ Back"
+        value="Back ⬅️"
         onClick={goToPrevPage}
       />
       <Button
         id="next-btn"
         disabled={isOnLastPage}
-        value="Next ➡️"
+        value="➡️ Next"
         onClick={goToNextPage}
       />
       <Button
         id="like-btn"
-        value={isCurrentPoemLiked ? "❤️ Liked" : "❤️ Like"}
+        value={isCurrentPoemLiked ? "Liked ❤️" : "Like ❤️"}
         title="Like"
         onClick={likePoem}
         disabled={isCurrentPoemLiked}
       ></Button>
       <Button
         id="share-btn"
-        value="Link 🔗"
+        value="🔗 Link"
         title="Share"
         onClick={sharePoem}
       ></Button>

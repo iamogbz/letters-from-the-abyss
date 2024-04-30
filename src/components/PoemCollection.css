@@ -20,14 +20,14 @@ input[type="button"][disabled] {
 }
 
 input#prev-btn, input#like-btn {
-  left: calc(50vw - (140px + 40vmin));
+  left: calc(50vw - (100px + 40vmin));
   /* border-left: 0; */
   /* border-top-left-radius: 0; */
   /* border-bottom-left-radius: 0; */
 }
 
 input#next-btn, input#share-btn  {
-  right: calc(50vw - (140px + 40vmin));
+  right: calc(50vw - (100px + 40vmin));
   /* border-right: 0; */
   /* border-top-right-radius: 0; */
   /* border-bottom-right-radius: 0; */
