@@ -8,7 +8,7 @@ input[type="button"] {
   top: 140px;
   background-color: var(--color-fg);
   color: var(--color-bg);
-  border: solid 2px var(--color-bg);
+  border: solid 2px color-mix(in srgb, var(--color-bg), transparent 50%);
   border-radius: 14px;
   padding: 20px;
   cursor: pointer;
@@ -20,14 +20,14 @@ input[type="button"][disabled] {
 }
 
 input#prev-btn, input#like-btn {
-  left: 10vmin;
+  left: calc(50vw - (140px + 40vmin));
   /* border-left: 0; */
   /* border-top-left-radius: 0; */
   /* border-bottom-left-radius: 0; */
 }
 
 input#next-btn, input#share-btn  {
-  right: 10vmin;
+  right: calc(50vw - (140px + 40vmin));
   /* border-right: 0; */
   /* border-top-right-radius: 0; */
   /* border-bottom-right-radius: 0; */
