@@ -4,12 +4,12 @@
 }
 
 input[type="button"] {
-  position: absolute;
+  position: fixed;
   top: 140px;
   background-color: var(--color-fg);
   color: var(--color-bg);
   border: solid 2px var(--color-bg);
-  border-radius: 20px;
+  border-radius: 14px;
   padding: 20px;
   cursor: pointer;
   z-index: 1;
@@ -19,24 +19,20 @@ input[type="button"][disabled] {
   opacity: 0.3;
 }
 
-input#prev-btn {
-  left: 0;
-  border-left: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+input#prev-btn, input#like-btn {
+  left: 10vmin;
+  /* border-left: 0; */
+  /* border-top-left-radius: 0; */
+  /* border-bottom-left-radius: 0; */
 }
 
-input#next-btn, input#like-btn, input#share-btn  {
-  right: 0;
-  border-right: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+input#next-btn, input#share-btn  {
+  right: 10vmin;
+  /* border-right: 0; */
+  /* border-top-right-radius: 0; */
+  /* border-bottom-right-radius: 0; */
 }
 
-input#like-btn {
+input#like-btn, input#share-btn {
   top: 210px;
-}
-
-input#share-btn {
-  top: 280px;
 }

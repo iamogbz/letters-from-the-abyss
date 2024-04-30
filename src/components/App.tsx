@@ -14,12 +14,12 @@ function App() {
   return (
     <div className={cls``}>
       <div className={cls`doodle`}>
-        {/* <Doodle>{`
-@grid: 50x1/100%;
+        <Doodle>{`
+@grid: 1/100%;
 
 @content: @svg(
   viewBox: 0 0 16 16 p 1;
-  stroke: #aeacfb;
+  stroke: var(--color-bh);
   stroke-width: .1;
   stroke-linecap: round;
   line*16x16 {
@@ -31,7 +31,7 @@ function App() {
     );
   }
 );
-        `}</Doodle> */}
+        `}</Doodle>
       </div>
       <div className={cls`text`}>
         <a className={cls`title`} href="#root">

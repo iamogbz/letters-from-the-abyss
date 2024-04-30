@@ -50,14 +50,17 @@ function PoemCollection() {
     [pageHash, pages]
   );
 
-  console.log(openPageNumber, poemEntries[openPageNumber])
+  console.log(openPageNumber, poemEntries[openPageNumber]);
 
   const isOnFirstPage = openPageNumber === 0;
   const isOnLastPage = openPageNumber === pages.length - 1;
 
-  const goToPage = React.useCallback((pageNum: number) => {
-    document.location.hash = poemEntries[pageNum][0];
-  }, [poemEntries]);
+  const goToPage = React.useCallback(
+    (pageNum: number) => {
+      document.location.hash = poemEntries[pageNum][0];
+    },
+    [poemEntries]
+  );
 
   const goToNextPage = React.useCallback(() => {
     goToPage(Math.min(openPageNumber + 1, poemEntries.length - 1));
@@ -71,33 +74,33 @@ function PoemCollection() {
 
   return (
     <>
-      <PoemImage {...entryProps} />
-      <PoemDetails {...entryProps} />
       <Button
         id="prev-btn"
         disabled={isOnFirstPage}
-        value="<< back"
+        value="⬅️ Back"
         onClick={goToPrevPage}
       />
       <Button
         id="next-btn"
         disabled={isOnLastPage}
-        value="next >>"
+        value="Next ➡️"
         onClick={goToNextPage}
       />
       <Button
         id="like-btn"
-        value="❤️"
+        value={isCurrentPoemLiked ? "❤️ Liked" : "❤️ Like"}
         title="Like"
         onClick={likePoem}
         disabled={isCurrentPoemLiked}
       ></Button>
       <Button
         id="share-btn"
-        value="🔗"
+        value="Link 🔗"
         title="Share"
         onClick={sharePoem}
       ></Button>
+      <PoemImage {...entryProps} />
+      <PoemDetails {...entryProps} />
     </>
   );
 }
