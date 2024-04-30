@@ -72,7 +72,7 @@ function PoemCollection() {
   const entryProps = { date, title };
 
   React.useEffect(() => {
-    const poemTitleTopPx = 80;
+    const poemTitleTopPx = 140;
     window.scrollTo({ top: poemTitleTopPx, behavior: "smooth" });
   }, [title]);
 
