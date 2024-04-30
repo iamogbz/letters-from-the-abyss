@@ -11,7 +11,7 @@ export const PoemImage = React.forwardRef<
   }
 >(({ title }, ref) => {
   return (
-    <div ref={ref}>
+    <div className={cls`photo-wrap`} ref={ref}>
       <div
         className={cls`photo`}
         style={{ backgroundImage: cardBg(title) }}
@@ -40,7 +40,7 @@ export const PoemDetails = React.forwardRef<
   );
 });
 
-export function PoemCard({
+function PoemCard({
   date,
   lines,
   title,
@@ -54,8 +54,8 @@ export function PoemCard({
       <a className={cls`title`} href={`#${title}`}>
         {formatTitle(title)}
       </a>
-      <div className={cls`text`}>{lines}</div>
       <div className={cls`timestamp`}>{formatDate(date)}</div>
+      <div className={cls`text`}>{lines}</div>
       <div className={cls`paper`}>
         <svg width="0">
           <filter id="filter">

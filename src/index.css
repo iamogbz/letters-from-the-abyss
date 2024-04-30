@@ -1,5 +1,5 @@
 :root {
-  /* --color-bg: rgb(32, 24, 24, 1); */
+  --color-bh: rgb(32, 24, 24, 1);
   --color-bg: black;
   --color-fg: rgb(239, 225, 210, 1);
   --color-hl: color-mix(in srgb, var(--color-fg), rgba(0,0,0,0) 20%);
@@ -11,7 +11,7 @@
 }
 
 html {
-  background-color: var(--color-fg);
+  background-color: var(--color-bg);
   scroll-behavior: smooth;
 }
 @media only screen and (min-width:768px) {
