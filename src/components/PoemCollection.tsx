@@ -50,8 +50,6 @@ function PoemCollection() {
     [pageHash, pages]
   );
 
-  console.log(openPageNumber, poemEntries[openPageNumber]);
-
   const isOnFirstPage = openPageNumber === 0;
   const isOnLastPage = openPageNumber === pages.length - 1;
 
