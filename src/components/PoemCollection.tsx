@@ -70,6 +70,11 @@ function PoemCollection() {
   const [title, date] = poemEntries[openPageNumber];
   const entryProps = { date, title };
 
+  React.useEffect(() => {
+    const poemTitleTopPx = 80;
+    window.scrollTo({ top: poemTitleTopPx, behavior: "smooth" });
+  }, [title]);
+
   return (
     <>
       <Button

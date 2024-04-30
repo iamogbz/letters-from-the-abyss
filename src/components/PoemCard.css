@@ -16,7 +16,7 @@
   box-shadow: 1px 1px 4px 4px color(--color-hl);
   margin-top: 100vh;
   border-radius: 10px;
-  box-shadow: color-mix(in srgb, var(--color-bg), transparent 90%) 0 0 2px 2px;
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 2px 2px;
 }
 
 .poem-card-content > *[class^="poem-card"] {
@@ -34,8 +34,9 @@
   width: 80vmin;
   min-width: 480px;
   min-height: 480px;
+  background-color: var(--color-bh);
   border-radius: 20px;
-  border-color: color-mix(in srgb, var(--color-fg), transparent 50%);
+  border-color: var(--color-hl);
   border-width: 4px;
   border-style: solid;
 }

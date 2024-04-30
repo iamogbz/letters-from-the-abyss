@@ -13,7 +13,8 @@
   display: flex;
   flex-direction: column;
   color: var(--color-fg);
-  background-color: var(--color-bg);
+  background-color: color-mix(in srgb, var(--color-bg), transparent 40%);
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 4px 4px;
   text-transform: capitalize;
   text-align: start;
   align-items: center;

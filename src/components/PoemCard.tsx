@@ -51,7 +51,14 @@ function PoemCard({
 }) {
   return (
     <div className={cls`content`}>
-      <a className={cls`title`} href={`#${title}`}>
+      <a
+        className={cls`title`}
+        href={`#${title}`}
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: window.screen.availHeight / 2 });
+        }}
+      >
         {formatTitle(title)}
       </a>
       <div className={cls`timestamp`}>{formatDate(date)}</div>
