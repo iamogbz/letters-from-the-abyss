@@ -30,8 +30,8 @@
   justify-content: center;
   position: fixed;
   top: calc(4em + 64px);
-  height: 80vmin;
-  width: 80vmin;
+  height: calc(80vmin - 50px);
+  width: calc(80vmin - 50px);
   /* min-width: 480px;
   min-height: 480px; */
   background-color: var(--color-bh);
