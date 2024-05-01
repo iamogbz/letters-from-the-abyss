@@ -1,8 +1,11 @@
 export async function sharePoem() {
   const shareText = window.location.href;
+  const successAlert = () =>
+    alert("Link to poem copied to clipboard, thanks for sharing!");
   try {
     try {
       await navigator.clipboard.writeText(shareText);
+      successAlert();
     } catch (e) {
       console.error(e);
       // Fallback for browsers without Clipboard API support
@@ -24,6 +27,7 @@ export async function sharePoem() {
       textarea.select();
       document.execCommand("copy");
       textarea.remove();
+      successAlert();
     }
   } catch (e) {
     console.error(e);

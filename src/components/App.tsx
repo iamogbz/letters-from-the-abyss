@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Logo from "./Logo";
 import withAppWrapper from "./hocs/withAppWrapper";
 import ErrorResetBoundary from "./ErrorResetBoundary";
-import PoemList from "./PoemList";
+import PoemCollection from "./PoemCollection";
 import Doodle from "./Doodle";
 import "./App.css";
 import { logPageVisit } from "../utils/hitCounter";
@@ -15,16 +15,21 @@ function App() {
     <div className={cls``}>
       <div className={cls`doodle`}>
         <Doodle>{`
-@grid: 50x1 / 100%;
+@grid: 1/100%;
 
-@place: center;
-@size: calc(100vmax / @I * @i);
-
-transform: rotate(calc(@i * 5deg));
-
-border-radius: 30%;
-border: 1px solid hsla(
-calc(10 + 4 * @i), 70%, 68%, @r.8
+@content: @svg(
+  viewBox: 0 0 16 16 p 1;
+  stroke: var(--color-bh);
+  stroke-width: .1;
+  stroke-linecap: round;
+  line*16x16 {
+    draw: @r(2s);
+    x1, y1, x2, y2: @p(
+      @nx(-1) @ny(-1) @nx @ny,
+      @nx @ny(-1) @nx(-1) @ny,
+      @nx @ny(-1) @nx @ny
+    );
+  }
 );
         `}</Doodle>
       </div>
@@ -43,7 +48,7 @@ calc(10 + 4 * @i), 70%, 68%, @r.8
       </div>
       <ErrorResetBoundary>
         <Suspense fallback={<Spinner />}>
-          <PoemList />
+          <PoemCollection />
         </Suspense>
       </ErrorResetBoundary>
       <div className={cls`spacer`}>&nbsp;</div>

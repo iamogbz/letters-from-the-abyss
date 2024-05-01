@@ -13,11 +13,31 @@
 .poem-card-content {
   flex-direction: column;
   transition: opacity 0.3s ease-in-out;
-  box-shadow: 1px 1px 4px 4px color(--color-hl);
+  margin-top: 100vh;
+  border-radius: 10px;
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 2px 2px;
 }
 
 .poem-card-content > *[class^="poem-card"] {
   background-color: var(--color-fg);
+}
+
+.poem-card-photo-wrap {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(4em + 64px);
+  height: calc(80vmin - 50px);
+  width: calc(80vmin - 50px);
+  /* min-width: 480px;
+  min-height: 480px; */
+  background-color: var(--color-bh);
+  border-radius: 20px;
+  border-color: var(--color-hl);
+  border-width: 4px;
+  border-style: solid;
 }
 
 .poem-card-photo {
@@ -25,14 +45,13 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   height: 100%;
   width: 100%;
 
   background-color: transparent;
-  background-position: top center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 
   &.collapsed {
     width: 0vw;
@@ -47,13 +66,6 @@
   /* height: calc(100% - 64px); */
   width: calc(100% - 64px);
 }
-
-/* .poem-card-text-sizer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-} */
 
 .poem-card-timestamp {
   /* position: absolute;

@@ -1,0 +1,39 @@
+.poem-list-wrapper {
+  /* display: flex; */
+  flex-direction: row;
+}
+
+input[type="button"] {
+  position: fixed;
+  top: 140px;
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 4px 4px;
+  border: solid 1px color-mix(in srgb, var(--color-bg), transparent 40%);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+input[type="button"][disabled] {
+  opacity: 0.3;
+}
+
+input#prev-btn, input#like-btn {
+  left: calc(50vw - (50px + 40vmin));
+  /* border-left: 0; */
+  /* border-top-left-radius: 0; */
+  /* border-bottom-left-radius: 0; */
+}
+
+input#next-btn, input#share-btn  {
+  right: calc(50vw - (50px + 40vmin));
+  /* border-right: 0; */
+  /* border-top-right-radius: 0; */
+  /* border-bottom-right-radius: 0; */
+}
+
+input#like-btn, input#share-btn {
+  top: 210px;
+}

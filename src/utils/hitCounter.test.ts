@@ -13,7 +13,7 @@ beforeEach(() => {
   errorSpy.mockImplementation(() => undefined);
   fetchSpy.mockResolvedValue(new Response());
   Object.defineProperty(window, "location", {
-    value: { ...windowLocation },
+    value: { ...windowLocation, host: 'letters-from-the-abyss.com' },
     writable: true,
   });
   window.localStorage.clear();

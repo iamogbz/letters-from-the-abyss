@@ -12,12 +12,14 @@
 .App-text {
   display: flex;
   flex-direction: column;
-  color: var(--color-bg);
+  color: var(--color-fg);
+  background-color: color-mix(in srgb, var(--color-bg), transparent 40%);
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 4px 4px;
   text-transform: capitalize;
   text-align: start;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  /* position: sticky; */
+  position: fixed;
   top: 0;
   left: 0;
   padding: 12px;
@@ -54,7 +56,6 @@
   left: calc((200vmax - 100vw) * -0.5);
   width: 200vmax;
   height: 200vmax;
-  animation: App-logo-spin infinite 20s linear;
 }
 
 @media (prefers-reduced-motion: no-preference) {
