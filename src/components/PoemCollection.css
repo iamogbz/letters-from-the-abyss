@@ -8,8 +8,8 @@ input[type="button"] {
   top: 140px;
   background-color: var(--color-fg);
   color: var(--color-bg);
-  box-shadow: color-mix(in srgb, var(--color-bg), transparent 50%) 0 0 4px 4px;
-  border: solid 1px color-mix(in srgb, var(--color-bg), transparent 50%);
+  box-shadow: color-mix(in srgb, var(--color-bg), transparent 80%) 0 0 4px 4px;
+  border: solid 1px color-mix(in srgb, var(--color-bg), transparent 40%);
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
