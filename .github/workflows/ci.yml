@@ -10,12 +10,12 @@ jobs:
   build-check-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Setup
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
-      - uses: pnpm/action-setup@v2.2.1
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4.0.0
         with:
           version: 7
           run_install: |
