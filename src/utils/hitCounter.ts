@@ -1,9 +1,9 @@
+import { MAIN_BRANCH } from "./constants";
+
 export const Keys = {
   PAGE_VISIT: "page-visit",
   POEM_LIKE: "poem-like",
 };
-
-const MAIN_BRANCH = "main";
 
 export function pageKey(part: string) {
   const mainPathBranch = `/${MAIN_BRANCH}`;

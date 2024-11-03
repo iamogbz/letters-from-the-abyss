@@ -16,17 +16,22 @@ function PoemCollection() {
   const pageHash = useValue(() => document.location.hash);
 
   const poemEntries = React.useMemo(() => {
-    // sort poems by date
-    return Object.entries(stories.data.published).sort((a, b) => {
-      return a[1].localeCompare(b[1]);
-    });
+    const [first, ...rest] = Object.entries(stories.data.published).sort(
+      (a, b) => {
+        // sort poems by date
+        return a[1].localeCompare(b[1]);
+      }
+    );
+    const [last, ...poems] = rest.reverse();
+    // randomise the poems but keep the first and last in place
+    return [first, ...poems.sort(() => Math.random() - 0.5), last];
   }, []);
 
   const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
   const likePoem = React.useCallback(async () => {
     await logPoemLike();
     setIsCurrentPoemLiked(isPageLocallyLiked());
-    alert('Awesome, thank you for your feedback!');
+    alert("Awesome, thank you for your feedback!");
   }, []);
   useOnNavigation({
     callback: () => setIsCurrentPoemLiked(isPageLocallyLiked()),
