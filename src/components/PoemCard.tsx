@@ -103,7 +103,8 @@ function formatTitle(title: string) {
   return title.replaceAll("-", " ");
 }
 
-function formatDate(date?: string | null) {
-  if (!date) return "";
-  return `${new Date(date).toDateString()}`;
+function formatDate(dateStr?: string | null) {
+  const date = new Date(dateStr ?? "");
+  if (!dateStr || Number.isNaN(date.getTime())) return "";
+  return `${date.toDateString()}`;
 }
