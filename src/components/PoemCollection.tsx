@@ -1,11 +1,13 @@
 import React from "react";
 // import ReactList from "react-list";
+import { pick } from "lodash";
+import { QueryParams } from "../utils/constants";
+import { isPageLocallyLiked, logPoemLike } from "../utils/hitCounter";
+import { sharePoem } from "../utils/share";
 import stories from "../utils/stories.json";
 import { PoemDetails, PoemImage } from "./PoemCard";
 import "./PoemCollection.css";
 import { useOnNavigation } from "./hooks/useOnNavigation";
-import { isPageLocallyLiked, logPoemLike } from "../utils/hitCounter";
-import { sharePoem } from "../utils/share";
 import { useValue } from "./hooks/useValue";
 
 function Button(props: React.InputHTMLAttributes<HTMLInputElement>) {
@@ -15,17 +17,26 @@ function Button(props: React.InputHTMLAttributes<HTMLInputElement>) {
 function PoemCollection() {
   const pageHash = useValue(() => document.location.hash);
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const includeAll = searchParams.has(QueryParams.ALL);
+  const includeDrafts = includeAll || searchParams.has(QueryParams.UNPUBLISHED);
+  const includePublished = includeAll || !includeDrafts;
   const poemEntries = React.useMemo(() => {
-    const [first, ...rest] = Object.entries(stories.data.published).sort(
-      (a, b) => {
-        // sort poems by date
-        return a[1].localeCompare(b[1]);
-      }
-    );
+    const storyEntries = pick(stories.data.published, "welcome", "credits");
+    if (includePublished) {
+      Object.assign(storyEntries, stories.data.published);
+    }
+    if (includeDrafts) {
+      Object.assign(storyEntries, stories.data.drafts);
+    }
+    const [first, ...rest] = Object.entries(storyEntries).sort((a, b) => {
+      // sort poems by date
+      return a[1].localeCompare(b[1]);
+    });
     const [last, ...poems] = rest.reverse();
     // randomise the poems but keep the first and last in place
     return [first, ...poems.sort(() => Math.random() - 0.5), last];
-  }, []);
+  }, [includeDrafts, includePublished]);
 
   const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
   const likePoem = React.useCallback(async () => {
