@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import withAppWrapper from "./hocs/withAppWrapper";
 import ErrorResetBoundary from "./ErrorResetBoundary";
 import PoemCollection from "./PoemCollection";
+import PoemSearch from "./PoemSearch";
 import Doodle from "./Doodle";
 import "./App.css";
 import { logPageVisit } from "../utils/hitCounter";
@@ -52,6 +53,7 @@ function App() {
         </Suspense>
       </ErrorResetBoundary>
       <div className={cls`spacer`}>&nbsp;</div>
+      <PoemSearch />
     </div>
   );
 }
