@@ -22,12 +22,29 @@ function PoemCollection() {
   const includeDrafts = includeAll || searchParams.has(QueryParams.UNPUBLISHED);
   const includePublished = includeAll || !includeDrafts;
   const poemEntries = React.useMemo(() => {
+    const allStories = { ...stories.data.published, ...stories.data.drafts };
     const storyEntries = pick(stories.data.published, "welcome", "credits");
     if (includePublished) {
       Object.assign(storyEntries, stories.data.published);
     }
     if (includeDrafts) {
       Object.assign(storyEntries, stories.data.drafts);
+    }
+    // check if the pageHash corresponds to a missing entry, if so include it
+    if (pageHash.startsWith("#")) {
+      const selectedStoryIsInEntries = Object.keys(storyEntries).some((k) =>
+        pageHash.endsWith(k)
+      );
+      if (!selectedStoryIsInEntries) {
+        const missingEntry = Object.keys(allStories).find((k) =>
+          pageHash.endsWith(k)
+        ) as keyof typeof allStories | undefined;
+        if (missingEntry) {
+          Object.assign(storyEntries, {
+            [missingEntry]: allStories[missingEntry],
+          });
+        }
+      }
     }
     const [first, ...rest] = Object.entries(storyEntries).sort((a, b) => {
       // sort poems by date
@@ -36,7 +53,7 @@ function PoemCollection() {
     const [last, ...poems] = rest.reverse();
     // randomise the poems but keep the first and last in place
     return [first, ...poems.sort(() => Math.random() - 0.5), last];
-  }, [includeDrafts, includePublished]);
+  }, [includeDrafts, includePublished, pageHash]);
 
   const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
   const likePoem = React.useCallback(async () => {
