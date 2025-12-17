@@ -18,6 +18,10 @@ git worktree remove "$TMP_DIR" --force 2>/dev/null || true
 git fetch origin "$DEPLOY_BRANCH" || true
 git worktree add "$TMP_DIR" "$DEPLOY_BRANCH" || git worktree add -B "$DEPLOY_BRANCH" "$TMP_DIR"
 
+# Please tell me who you are
+git config --global user.email "iamogbz+github@gmail.com"
+git config --global user.name "Emmanuel Ogbizi-Ugbe"
+
 # Remove old contents
 rm -rf "$TMP_DIR"/*
 
