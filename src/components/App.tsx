@@ -6,12 +6,8 @@ import PoemCollection from "./PoemCollection";
 import PoemSearch from "./PoemSearch";
 import Doodle from "./Doodle";
 import "./App.css";
-import { logPageVisit } from "../utils/hitCounter";
-import { useOnNavigation } from "./hooks/useOnNavigation";
 
 function App() {
-  useOnNavigation({ callback: logPageVisit });
-
   return (
     <div className={cls``}>
       <div className={cls`doodle`}>

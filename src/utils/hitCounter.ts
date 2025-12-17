@@ -18,17 +18,17 @@ export function pageKey(part: string) {
   return pathWithHash;
 }
 
-export function apiLogCount(countKey: string) {
-  return `https://api.${window.location.host}/counter${countKey}`;
-}
+// export function apiLogCount(countKey: string) {
+//   return `https://api.${window.location.host}/counter${countKey}`;
+// }
 
-export async function logPageVisit() {
-  try {
-    await fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
-  } catch (e) {
-    console.error(e);
-  }
-}
+// export async function logPageVisit() {
+//   try {
+//     await fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
+//   } catch (e) {
+//     console.error(e);
+//   }
+// }
 
 export function isPageLocallyLiked() {
   const likey = pageKey(Keys.POEM_LIKE);
@@ -42,7 +42,7 @@ export function isPageLocallyLiked() {
 export async function logPoemLike() {
   const likey = pageKey(Keys.POEM_LIKE);
   try {
-    await fetch(apiLogCount(likey));
+    // await fetch(apiLogCount(likey));
     window.localStorage.setItem(likey, "true");
   } catch (e) {
     console.error(e);
