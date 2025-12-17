@@ -35,7 +35,12 @@ jobs:
           pnpm test -- --ci --coverage --watchAll=false
       - name: Build
         run: |
-          export PUBLIC_URL="/${GITHUB_REF_NAME//\//-}"
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            export PUBLIC_URL="/"
+          else
+            export PUBLIC_URL="/${GITHUB_REF_NAME//\//-}"
+          fi
+
           pnpm build
       - name: Report
         env:

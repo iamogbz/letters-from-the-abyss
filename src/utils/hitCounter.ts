@@ -18,17 +18,19 @@ export function pageKey(part: string) {
   return pathWithHash;
 }
 
-// export function apiLogCount(countKey: string) {
-//   return `https://api.${window.location.host}/counter${countKey}`;
-// }
+// deprecated with migration from amzn api gateway
+export function apiLogCount(countKey: string) {
+  return `https://api.${window.location.host}/counter${countKey}`;
+}
 
-// export async function logPageVisit() {
-//   try {
-//     await fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
+// deprecated with migration from amzn api gateway
+export async function logPageVisit() {
+  try {
+    await fetch(apiLogCount(pageKey(Keys.PAGE_VISIT)));
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 export function isPageLocallyLiked() {
   const likey = pageKey(Keys.POEM_LIKE);
