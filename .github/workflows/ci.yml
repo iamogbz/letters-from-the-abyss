@@ -6,11 +6,16 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   build-check-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup
         uses: actions/setup-node@v4
         with:
