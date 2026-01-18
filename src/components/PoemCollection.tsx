@@ -21,7 +21,7 @@ function PoemCollection() {
   const includeAll = searchParams.has(QueryParams.ALL);
   const includeDrafts = includeAll || searchParams.has(QueryParams.UNPUBLISHED);
   const includePublished = includeAll || !includeDrafts;
-  const poemEntries = React.useMemo(() => {
+  const poemStories = React.useMemo(() => {
     const allStories = { ...stories.data.published, ...stories.data.drafts };
     const storyEntries = pick(stories.data.published, "welcome", "credits");
     if (includePublished) {
@@ -46,14 +46,20 @@ function PoemCollection() {
         }
       }
     }
-    const [first, ...rest] = Object.entries(storyEntries).sort((a, b) => {
+    return storyEntries;
+  }, [includeDrafts, includePublished, pageHash]);
+
+  const poemMemoKey = Object.keys(poemStories).sort().join("-");
+  const poemEntries = React.useMemo(() => {
+    const [first, ...rest] = Object.entries(poemStories).sort((a, b) => {
       // sort poems by date
       return a[1].localeCompare(b[1]);
     });
     const [last, ...poems] = rest.reverse();
     // randomise the poems but keep the first and last in place
     return [first, ...poems.sort(() => Math.random() - 0.5), last];
-  }, [includeDrafts, includePublished, pageHash]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [poemMemoKey]);
 
   const [isCurrentPoemLiked, setIsCurrentPoemLiked] = React.useState(false);
   const likePoem = React.useCallback(async () => {
