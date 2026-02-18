@@ -37,6 +37,7 @@ mkdir -p "$TARGET_DIR"
 rm -rf "$TARGET_DIR"/*
 
 # Copy build output
+echo "letters-from-the-abyss.com" > "$BUILD_DIR"/CNAME
 cp -R "$BUILD_DIR"/* "$TARGET_DIR"/
 
 # Commit & push
