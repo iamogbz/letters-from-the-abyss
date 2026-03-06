@@ -11,30 +11,28 @@ export default function PoemSearch() {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [cache, setCache] = React.useState<Record<string, string>>({});
 
   const allPoems = React.useMemo(() => {
     return Object.keys({ ...stories.data.published, ...stories.data.drafts });
   }, []);
 
-  const loadPoemContent = React.useCallback(
-    async (title: string) => {
-      if (cache[title]) return cache[title];
-
+  const allPoemContents = React.useMemo(() => {
+    const contents: Record<string, string> = {};
+    const loadContent = async (title: string) => {
       try {
         const response = await fetch(`stories/${title}.txt`);
         if (response.ok) {
           const content = await response.text();
-          setCache((prev) => ({ ...prev, [title]: content }));
-          return content;
+          contents[title] = content;
         }
       } catch (e) {
         console.error(`Failed to load ${title}:`, e);
       }
-      return "";
-    },
-    [cache]
-  );
+    };
+
+    allPoems.forEach((title) => loadContent(title));
+    return contents;
+  }, [allPoems]);
 
   const searchPoems = React.useCallback(
     async (searchQuery: string) => {
@@ -47,9 +45,9 @@ export default function PoemSearch() {
       const searchResults: SearchResult[] = [];
       const lowerQuery = searchQuery.toLowerCase();
 
-      for (const title of allPoems) {
+      for (const title of Object.keys(allPoemContents)) {
         const formattedTitle = title.replaceAll("-", " ");
-        const content = await loadPoemContent(title);
+        const content = allPoemContents[title];
 
         let score = 0;
 
@@ -83,7 +81,7 @@ export default function PoemSearch() {
       setResults(searchResults.slice(0, 5));
       setIsLoading(false);
     },
-    [allPoems, loadPoemContent]
+    [allPoemContents]
   );
 
   React.useEffect(() => {
