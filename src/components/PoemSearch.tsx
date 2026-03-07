@@ -11,26 +11,34 @@ export default function PoemSearch() {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  type PoemTitles =
+    | keyof typeof stories.data.drafts
+    | keyof typeof stories.data.published;
 
-  const allPoems = React.useMemo(() => {
-    return Object.keys({ ...stories.data.published, ...stories.data.drafts });
+  const allPoems = React.useMemo<Record<PoemTitles, string>>(() => {
+    return { ...stories.data.published, ...stories.data.drafts };
   }, []);
 
   const allPoemContents = React.useMemo(() => {
-    const contents: Record<string, string> = {};
-    const loadContent = async (title: string) => {
+    const contents = {} as Record<PoemTitles, string>;
+    const loadContent = async (title: PoemTitles) => {
       try {
         const response = await fetch(`stories/${title}.txt`);
         if (response.ok) {
           const content = await response.text();
-          contents[title] = content;
+          const date = allPoems[title];
+          contents[title] = `${content}\n\n${date}\n\n${new Date(date)
+            .toString()
+            .substring(0, 15)}`;
         }
       } catch (e) {
         console.error(`Failed to load ${title}:`, e);
       }
     };
 
-    allPoems.forEach((title) => loadContent(title));
+    (Object.keys(allPoems) as Array<PoemTitles>).forEach((title) =>
+      loadContent(title)
+    );
     return contents;
   }, [allPoems]);
 
@@ -45,7 +53,7 @@ export default function PoemSearch() {
       const searchResults: SearchResult[] = [];
       const lowerQuery = searchQuery.toLowerCase();
 
-      for (const title of Object.keys(allPoemContents)) {
+      for (const title of Object.keys(allPoemContents) as Array<PoemTitles>) {
         const formattedTitle = title.replaceAll("-", " ");
         const content = allPoemContents[title];
 
